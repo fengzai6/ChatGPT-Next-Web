@@ -268,7 +268,7 @@ function SyncItems() {
 
   return (
     <List>
-      <ListItem
+      {/* <ListItem
         title={Locale.Settings.Sync.LastUpdate}
         subTitle={new Date(syncStore.lastSyncTime).toLocaleString()}
       >
@@ -279,7 +279,7 @@ function SyncItems() {
             showToast(Locale.WIP);
           }}
         />
-      </ListItem>
+      </ListItem> */}
 
       <ListItem
         title={Locale.Settings.Sync.LocalState}
@@ -428,7 +428,7 @@ export function Settings() {
             </Popover>
           </ListItem>
 
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
             subTitle={
               checkingUpdate
@@ -451,7 +451,7 @@ export function Settings() {
                 onClick={() => checkUpdate(true)}
               />
             )}
-          </ListItem>
+          </ListItem> */}
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select

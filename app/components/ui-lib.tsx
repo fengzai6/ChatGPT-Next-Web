@@ -9,6 +9,8 @@ import ConfirmIcon from "../icons/confirm.svg";
 import CancelIcon from "../icons/cancel.svg";
 import MaxIcon from "../icons/max.svg";
 import MinIcon from "../icons/min.svg";
+import wxImg from "../icons/1wx.jpg";
+import zfbImg from "../icons/1zfb.jpg";
 
 import Locale from "../locales";
 
@@ -209,6 +211,63 @@ export function Toast(props: ToastProps) {
         )}
       </div>
     </div>
+  );
+}
+export type ToasProps = {
+  content: string;
+  action?: {
+    text: string;
+    onClick: () => void;
+  };
+  onClose?: () => void;
+};
+export function Toas(props: ToastProps) {
+  return (
+    <div className={styles["img-box"]}>
+      <div className={styles["img-title-box"]}>
+        <p className={styles["img-title"]}>
+          <span>感谢支持！</span>
+          <span>有您慷慨！</span>
+        </p>
+        <p className={styles["img-title"]}>您就该幸福一辈子！</p>
+      </div>
+      <div className={styles["img-content"]}>
+        <img src={wxImg.src} />
+        <img src={zfbImg.src} />
+      </div>
+      <div className={styles["img-close"]} onClick={props.onClose}>
+        X
+      </div>
+    </div>
+  );
+}
+// 居中弹出显示两张本地图片，右上角有关闭按钮
+export function ImagePopup(
+  content: string,
+  action?: ToasProps["action"],
+  delay = 300000,
+) {
+  const div = document.createElement("div");
+  div.className = styles.show;
+  document.body.appendChild(div);
+
+  const root = createRoot(div);
+  const close = () => {
+    div.classList.add(styles.hide);
+
+    setTimeout(() => {
+      root.unmount();
+      div.remove();
+    }, 300);
+  };
+  console.log("content", wxImg.src);
+  setTimeout(() => {
+    close();
+  }, delay);
+
+  root.render(
+    <Toas content={content} action={action} onClose={close} />,
+    // <img src={wxImg.src} />
   );
 }
 
