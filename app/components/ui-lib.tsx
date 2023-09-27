@@ -223,20 +223,22 @@ export type ToasProps = {
 };
 export function Toas(props: ToastProps) {
   return (
-    <div className={styles["img-box"]}>
-      <div className={styles["img-title-box"]}>
-        <p className={styles["img-title"]}>
-          <span>感谢支持！</span>
-          <span>有您慷慨！</span>
-        </p>
-        <p className={styles["img-title"]}>您就该幸福一辈子！</p>
-      </div>
-      <div className={styles["img-content"]}>
-        <img src={wxImg.src} />
-        <img src={zfbImg.src} />
-      </div>
-      <div className={styles["img-close"]} onClick={props.onClose}>
-        X
+    <div className={styles["img-back-box"]} onClick={props.onClose}>
+      <div className={styles["img-box"]}>
+        <div className={styles["img-title-box"]}>
+          <p className={styles["img-title"]}>
+            <span>感谢支持！</span>
+            <span>您的支持！</span>
+          </p>
+          <p className={styles["img-title"]}>就是我维护的动力</p>
+        </div>
+        <div className={styles["img-content"]}>
+          <img src={wxImg.src} />
+          <img src={zfbImg.src} />
+        </div>
+        <div className={styles["img-close"]} onClick={props.onClose}>
+          X
+        </div>
       </div>
     </div>
   );

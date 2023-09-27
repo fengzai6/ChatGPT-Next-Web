@@ -176,9 +176,16 @@
   transition: all ease 0.3s;
   transform: translateY(20px);
 }
+.img-back-box {
+  
+  width: 100vw;
+  height: 100vh;
+  // background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
 .img-box {
   position: fixed;
-  top: 50vh;
+  top: 150vh;
   left: 50vw;
   transform: translate(-50%, -210%);
   width: 50vw;
@@ -229,7 +236,7 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    border-radius: 3px;
+    border-radius: 50%;
   }
 
   /* 移动端 */
