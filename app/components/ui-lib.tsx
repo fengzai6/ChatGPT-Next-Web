@@ -228,13 +228,15 @@ export function Toas(props: ToastProps) {
         <div className={styles["img-title-box"]}>
           <p className={styles["img-title"]}>
             <span>感谢支持！</span>
-            <span>您的支持！</span>
+            <span>哦啦哦啦！</span>
           </p>
-          <p className={styles["img-title"]}>就是我维护的动力</p>
+          <p className={styles["img-title"]}>维护动力在哪里</p>
         </div>
         <div className={styles["img-content"]}>
-          <img src={wxImg.src} />
-          <img src={zfbImg.src} />
+          {/* <img src={wxImg.src} />
+          <img src={zfbImg.src} /> */}
+          <p>我会</p>
+          <p>处理</p>
         </div>
         <div className={styles["img-close"]} onClick={props.onClose}>
           X
