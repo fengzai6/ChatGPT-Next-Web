@@ -4,6 +4,7 @@ import "./styles/markdown.scss";
 import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "ChatGPT For U",
@@ -23,6 +24,23 @@ export const metadata: Metadata = {
   },
 };
 
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <html lang="en">
+//       <head>
+//         <meta name="config" content={JSON.stringify(getClientConfig())} />
+//         <link rel="manifest" href="/site.webmanifest"></link>
+//         <script src="/serviceWorkerRegister.js" defer></script>
+//         <script src="/matomo.js" defer></script>
+//       </head>
+//       <body>{children}</body>
+//     </html>
+//   );
+// }
 export default function RootLayout({
   children,
 }: {
@@ -33,7 +51,8 @@ export default function RootLayout({
       <head>
         <meta name="config" content={JSON.stringify(getClientConfig())} />
         <link rel="manifest" href="/site.webmanifest"></link>
-        <script src="/serviceWorkerRegister.js" defer></script>
+        <Script src="/serviceWorkerRegister.js" strategy="afterInteractive" />
+        <Script src="/matomo.js" strategy="afterInteractive" />
       </head>
       <body>{children}</body>
     </html>
