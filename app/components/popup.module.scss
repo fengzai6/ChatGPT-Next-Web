@@ -1,0 +1,41 @@
+.notify {
+    min-height: 30vh;
+    .title {
+        font-size: 16px;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+    }
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        width: 100%;
+        .tag {
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #cae2eb;
+            font-size: 12px;
+            font-weight: 500;
+            color: #000;
+        }
+    }
+    .tip {
+        font-size: 12px;
+        font-weight: 500;
+        width: 100%;
+        display: flex;
+        align-items: start;
+        .tip-title {
+            margin: 0;
+            // font-size: 14px;
+            font-weight: bold;
+            margin-right: 5px;
+            width: fit-content;
+        }
+        .tip-content {
+            margin: 0;
+        }
+    }
+}

@@ -122,7 +122,27 @@ const loadAsyncGoogleFont = () => {
   document.head.appendChild(linkEl);
 };
 
+import { PopupComponent } from "./popup";
+
 function Screen() {
+  const dateId = 240129;
+  // 从本地存储中获取showPopup配置，如果没有该本地字段则不设置localStorage
+  if (!localStorage.getItem("popupSetting")) {
+    localStorage.setItem(
+      "popupSetting",
+      JSON.stringify({ id: dateId, showPopup: true }),
+    );
+  }
+  const popupSetting = JSON.parse(localStorage.getItem("popupSetting") || "{}");
+  const [showPopup, setShowPopup] = useState(popupSetting.showPopup);
+  if (popupSetting.id !== dateId) {
+    localStorage.setItem(
+      "popupSetting",
+      JSON.stringify({ id: dateId, showPopup: true }),
+    );
+    setShowPopup(true);
+  }
+
   const config = useAppConfig();
   const location = useLocation();
   const isHome = location.pathname === Path.Home;
@@ -144,6 +164,9 @@ function Screen() {
         }`
       }
     >
+      {showPopup && (
+        <PopupComponent onClose={() => setShowPopup(false)} dateId={dateId} />
+      )}
       {isAuth ? (
         <>
           <AuthPage />
