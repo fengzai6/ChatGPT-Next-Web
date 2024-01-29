@@ -98,6 +98,7 @@ export function Loading() {
 
 interface ModalProps {
   title: string;
+  size?: "small" | "medium" | "large";
   children?: any;
   actions?: React.ReactNode[];
   defaultMax?: boolean;
@@ -127,9 +128,27 @@ export function Modal(props: ModalProps) {
       className={
         styles["modal-container"] + ` ${isMax && styles["modal-container-max"]}`
       }
+      style={
+        props.size === "small"
+          ? {
+              width: 400,
+            }
+          : props.size === "large"
+          ? {
+              width: 800,
+            }
+          : {}
+      }
     >
       <div className={styles["modal-header"]}>
-        <div className={styles["modal-title"]}>{props.title}</div>
+        <div
+          className={styles["modal-title"]}
+          style={
+            props.size === "small" ? { fontSize: 20, fontWeight: "bold" } : {}
+          }
+        >
+          {props.title}
+        </div>
 
         <div className={styles["modal-header-actions"]}>
           <div
