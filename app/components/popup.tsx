@@ -55,7 +55,7 @@ export function PopupComponent(props: { onClose: () => void; dateId: number }) {
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
-              虽然没有了16k等长上下文模型，但是响应速度应该是变快了很多
+              虽然没有了16k等长上下文模型，但是响应速度应该是变快了很多；gpt4可能有时候会抽搐🙄
             </p>
           </div>
         </div>
