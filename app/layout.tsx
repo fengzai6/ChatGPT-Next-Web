@@ -4,7 +4,10 @@ import "./styles/markdown.scss";
 import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 import { type Metadata } from "next";
-import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { getServerSideConfig } from "./config/server";
+import { GoogleTagManager } from "@next/third-parties/google";
+const serverConfig = getServerSideConfig();
 
 export const metadata: Metadata = {
   title: "ChatGPT For U",
@@ -51,10 +54,21 @@ export default function RootLayout({
       <head>
         <meta name="config" content={JSON.stringify(getClientConfig())} />
         <link rel="manifest" href="/site.webmanifest"></link>
-        <Script src="/serviceWorkerRegister.js" strategy="afterInteractive" />
-        <Script src="/matomo.js" strategy="afterInteractive" />
+        <script src="/serviceWorkerRegister.js" defer></script>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        {serverConfig?.isVercel && (
+          <>
+            <SpeedInsights />
+          </>
+        )}
+        {serverConfig?.gtmId && (
+          <>
+            <GoogleTagManager gtmId={serverConfig.gtmId} />
+          </>
+        )}
+      </body>
     </html>
   );
 }
