@@ -4,7 +4,7 @@ import styles from "./home.module.scss";
 
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
-import GithubIcon from "../icons/github.svg";
+import NoticeIcon from "../icons/notice.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
@@ -128,7 +128,7 @@ function useDragSideBar() {
   };
 }
 
-export function SideBar(props: { className?: string }) {
+export function SideBar(props: { className?: string; setShowPopup: any }) {
   const chatStore = useChatStore();
 
   // drag side bar
@@ -214,11 +214,15 @@ export function SideBar(props: { className?: string }) {
               <IconButton icon={<SettingsIcon />} shadow />
             </Link>
           </div>
-          {/* <div className={styles["sidebar-action"]}>
-            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
-              <IconButton icon={<GithubIcon />} shadow />
-            </a>
-          </div> */}
+          <div className={styles["sidebar-action"]}>
+            <IconButton
+              icon={<NoticeIcon />}
+              shadow
+              onClick={() => {
+                props.setShowPopup(true);
+              }}
+            />
+          </div>
         </div>
         <div>
           <IconButton

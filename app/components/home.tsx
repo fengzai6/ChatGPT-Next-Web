@@ -171,7 +171,10 @@ function Screen() {
         </>
       ) : (
         <>
-          <SideBar className={isHome ? styles["sidebar-show"] : ""} />
+          <SideBar
+            className={isHome ? styles["sidebar-show"] : ""}
+            setShowPopup={setShowPopup}
+          />
 
           <div className={styles["window-content"]} id={SlotID.AppBody}>
             <Routes>
