@@ -50,12 +50,13 @@ export function PopupComponent(props: { onClose: () => void; dateId: number }) {
             <span className={styles["tag"]}>gpt-3.5-turbo</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-0301</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-0613</span>
+            <span className={styles["tag"]}>谷歌gemini-pro</span>
           </p>
           <p>😉使用愉快~</p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
-              虽然没有了16k等长上下文模型，但是响应速度应该是变快了很多；gpt4可能有时候会抽搐🙄
+              新增谷歌ai模型gemini-pro
             </p>
           </div>
         </div>
