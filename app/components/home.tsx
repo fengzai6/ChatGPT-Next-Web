@@ -122,10 +122,10 @@ const loadAsyncGoogleFont = () => {
   document.head.appendChild(linkEl);
 };
 
-import { PopupComponent } from "./popup";
+import { PopupComponent, dateId } from "./popup";
 
 function Screen() {
-  const dateId = 240202;
+  // const dateId = 240202;
   // 从本地存储中获取showPopup配置，如果没有该本地字段则不设置localStorage
   if (!localStorage.getItem("popupSetting")) {
     localStorage.setItem(
@@ -164,9 +164,7 @@ function Screen() {
         }`
       }
     >
-      {showPopup && (
-        <PopupComponent onClose={() => setShowPopup(false)} dateId={dateId} />
-      )}
+      {showPopup && <PopupComponent onClose={() => setShowPopup(false)} />}
       {isAuth ? (
         <>
           <AuthPage />

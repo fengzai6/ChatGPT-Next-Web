@@ -98,6 +98,7 @@ export function Loading() {
 
 interface ModalProps {
   title: string;
+  date?: string;
   size?: "small" | "medium" | "large";
   children?: any;
   actions?: React.ReactNode[];
@@ -169,6 +170,7 @@ export function Modal(props: ModalProps) {
       <div className={styles["modal-content"]}>{props.children}</div>
 
       <div className={styles["modal-footer"]}>
+        <span className={styles["modal-date"]}>{props.date}</span>
         {props.footer}
         <div className={styles["modal-actions"]}>
           {props.actions?.map((action, i) => (
