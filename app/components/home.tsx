@@ -125,7 +125,7 @@ const loadAsyncGoogleFont = () => {
 import { PopupComponent } from "./popup";
 
 function Screen() {
-  const dateId = 240129;
+  const dateId = 240202;
   // 从本地存储中获取showPopup配置，如果没有该本地字段则不设置localStorage
   if (!localStorage.getItem("popupSetting")) {
     localStorage.setItem(
