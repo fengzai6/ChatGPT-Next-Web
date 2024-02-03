@@ -8,15 +8,15 @@ const cn = {
   Error: {
     Unauthorized: isApp
       ? "检测到无效 API Key，请前往[设置](/#/settings)页检查 API Key 是否配置正确。"
-      : "访问密码不正确或为空，请前往[登录](/#/auth)页输入正确的访问密码，或者在[设置](/#/settings)页填入你自己的 OpenAI API Key。",
+      : "访问密码不正确或为空，请前往[登录](/#/auth)页输入正确的访问密码，或者在[设置](/#/settings)页填入你自己的 OpenAI API Key，又或者问下强强密码是啥🤔。",
   },
   Auth: {
-    Title: "需要密码",
-    Tips: "管理员开启了密码验证，请在下方填入访问码",
+    Title: "需要神秘代码",
+    Tips: "强强开启了密码验证，请在下方填入访问码",
     SubTips: "或者输入你的 OpenAI 或 Google API 密钥",
     Input: "在此处填写访问码",
     Confirm: "确认",
-    Later: "稍后再说",
+    Later: "溜达溜达，稍后再来",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
@@ -133,13 +133,13 @@ const cn = {
         Title: "重置所有设置",
         SubTitle: "重置所有设置项回默认值",
         Action: "立即重置",
-        Confirm: "确认重置所有设置？",
+        Confirm: "真的确认以及肯定重置所有设置？",
       },
       Clear: {
         Title: "清除所有数据",
         SubTitle: "清除所有聊天、设置数据",
         Action: "立即清除",
-        Confirm: "确认清除所有聊天、设置数据？",
+        Confirm: "真的确认以及肯定清除所有聊天、设置数据？",
       },
     },
     Lang: {
@@ -360,7 +360,7 @@ const cn = {
   Store: {
     DefaultTopic: "新的聊天",
     BotHello: "有什么可以帮你的吗",
-    Error: "出错了，稍后重试吧",
+    Error: "出错了＞﹏＜，稍后重试吧",
     Prompt: {
       History: (content: string) => "这是历史聊天总结作为前情提要：" + content,
       Topic:
