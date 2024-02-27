@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 20240205;
+export const dateId = 20240227;
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
     localStorage.setItem(
@@ -51,11 +51,12 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>✨🌟re开放4🌟✨</p>
+          <p className={styles["title"]}>✨🌟开放更多4🌟✨</p>
           <p>现在支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
-            {/* <span className={styles["tag"]}>gpt-4-0314</span> */}
+            <span className={styles["tag"]}>gpt-4-1106-preview</span>
+            <span className={styles["tag"]}>gpt-4-turbo-preview</span>
             <span className={styles["tag"]}>gpt-3.5-turbo</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-0301</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-0613</span>
@@ -67,7 +68,8 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 一段人生格言 */}
-              人生就像一盒巧克力，结果往往出人意料。
+              我喜欢做梦，因为梦里的我十分幸福。
+              我羡慕梦里的我，他是梦想中的我。
             </p>
           </div>
         </div>
