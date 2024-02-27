@@ -6,20 +6,34 @@
         width: 100%;
         text-align: center;
     }
+    .tags-title {
+        font-size: 14px;
+        font-weight: bold;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
+    }
     .tags {
         display: flex;
         flex-wrap: wrap;
         margin: 0 auto;
         width: 100%;
         .tag {
+            line-height: 1;
             margin: 5px;
             padding: 5px 10px;
             border-radius: 5px;
             background-color: #cae2eb;
             font-size: 12px;
             font-weight: 500;
-            color: #000;
+            color: #0f2231;
         }
+    }
+    .des {
+        font-size: 14px;
+        font-weight: 500;
+        width: 100%;
+        margin: 10px 0;
     }
     .tip {
         font-size: 12px;

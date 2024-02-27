@@ -51,10 +51,8 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>
-            ✨🌟开放更多模型，支持谷歌视觉了？🌟✨
-          </p>
-          <p>现在支持模型如下：</p>
+          <p className={styles["title"]}>✨🌟开放更多模型，支持谷歌视觉🌟✨</p>
+          <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-1106-preview</span>
@@ -66,7 +64,9 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-pro-vision</span>
           </p>
-          <p>😉使用愉快~</p>
+          <p className={styles["des"]}>
+            新增谷歌视觉模型为识别图片，可以上传多个图片进行提问😉
+          </p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
