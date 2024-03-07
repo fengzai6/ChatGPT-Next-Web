@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 20240229;
+export const dateId = 20240307;
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
     localStorage.setItem(
@@ -51,7 +51,7 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>✨🌟支持谷歌视觉🌟✨</p>
+          {/* <p className={styles["title"]}>✨🌟支持谷歌视觉🌟✨</p> */}
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
@@ -63,13 +63,13 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>谷歌gemini-pro-vision</span>
           </p>
           <p className={styles["des"]}>
-            谷歌视觉模型为识别图片，可以上传多个图片进行提问😉
+            谷歌视觉gemini-pro-vision模型为识别图片，可以上传多个图片进行提问，支持复制粘贴🦆
           </p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 疯狂星期四语句 */}
-              今天是2月29日疯狂星期四，错过了这次要等28年，v我50，再不请我吃就只能等到2052年才有2月29了（狗头）
+              独自一人远离家乡在广东打工，同事欺我，老板骂我，顾客打我，我流浪街头，衣衫褴褛，身无分文，活得不如一条流浪狗。天地浩大，却没有我的容身之处。我想问一问苍天，今天肯德基疯狂星期四，谁能请我吃🍔🍟
             </p>
           </div>
         </div>
