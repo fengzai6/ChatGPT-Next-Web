@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 20240307;
+export const dateId = 20240315;
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
     localStorage.setItem(
@@ -51,13 +51,14 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          {/* <p className={styles["title"]}>✨🌟支持谷歌视觉🌟✨</p> */}
+          <p className={styles["title"]}>抱歉对于gpt4暂时不可用</p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
-            <span className={styles["tag"]}>gpt-4</span>
+            {/* <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-1106-preview</span>
-            <span className={styles["tag"]}>gpt-4-turbo-preview</span>
+            <span className={styles["tag"]}>gpt-4-turbo-preview</span> */}
             <span className={styles["tag"]}>gpt-3.5-turbo</span>
+            <span className={styles["tag"]}>gpt-3.5-turbo-0125</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-1106</span>
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-pro-vision</span>
@@ -68,8 +69,8 @@ export function PopupComponent(props: { onClose: () => void }) {
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
-              {/* 疯狂星期四语句 */}
-              独自一人远离家乡在广东打工，同事欺我，老板骂我，顾客打我，我流浪街头，衣衫褴褛，身无分文，活得不如一条流浪狗。天地浩大，却没有我的容身之处。我想问一问苍天，今天肯德基疯狂星期四，谁能请我吃🍔🍟
+              {/* 发神经的语句 */}
+              我靠为什么gpt-4不可用了
             </p>
           </div>
         </div>
