@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 20240315;
+export const dateId = 20240317;
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
     localStorage.setItem(
@@ -51,12 +51,12 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>抱歉对于gpt4暂时不可用</p>
+          <p className={styles["title"]}>gpt4重启</p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
-            {/* <span className={styles["tag"]}>gpt-4</span>
+            <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-1106-preview</span>
-            <span className={styles["tag"]}>gpt-4-turbo-preview</span> */}
+            {/* <span className={styles["tag"]}>gpt-4-turbo-preview</span> */}
             <span className={styles["tag"]}>gpt-3.5-turbo</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-0125</span>
             <span className={styles["tag"]}>gpt-3.5-turbo-1106</span>
@@ -70,7 +70,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 发神经的语句 */}
-              我靠为什么gpt-4不可用了
+              gpt-4使用过程避免使用你好/询问你是谁等言语
             </p>
           </div>
         </div>
