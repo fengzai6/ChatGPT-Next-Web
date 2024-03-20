@@ -8,6 +8,7 @@ import {
   getMessageImages,
   isVisionModel,
 } from "@/app/utils";
+import { showToast } from "@/app/components/ui-lib";
 
 export class GeminiProApi implements LLMApi {
   extractMessage(res: any) {
@@ -62,9 +63,13 @@ export class GeminiProApi implements LLMApi {
         i++;
       }
     }
-    // if (visionModel && messages.length > 1) {
-    //   options.onError?.(new Error("Multiturn chat is not enabled for models/gemini-pro-vision"));
-    // }
+    if (visionModel && messages.length > 1) {
+      // options.onError?.(new Error("Multiturn chat is not enabled for models/gemini-pro-vision"));
+      showToast("请清除上下文继续使用");
+      setTimeout(() => {
+        showToast("模型gemini-pro-vision 不支持多轮聊天功能");
+      }, 2000);
+    }
     const modelConfig = {
       ...useAppConfig.getState().modelConfig,
       ...useChatStore.getState().currentSession().mask.modelConfig,

@@ -294,6 +294,7 @@ export function isVisionModel(model: string) {
   return (
     // model.startsWith("gpt-4-vision") ||
     // model.startsWith("gemini-pro-vision") ||
-    model.includes("vision")
+    // 包含vision或者haiku
+    model.includes("vision") || model.includes("haiku")
   );
 }
