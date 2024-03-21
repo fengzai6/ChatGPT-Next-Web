@@ -213,8 +213,9 @@ export class ChatGPTApi implements LLMApi {
               if (extraInfo) {
                 responseTexts.push(extraInfo);
               }
-
               responseText = responseTexts.join("\n\n");
+              responseText +=
+                "报错可以根据message处理，或者换模型，或者联系qqwj03";
 
               return finish();
             }

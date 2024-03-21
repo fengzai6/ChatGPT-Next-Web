@@ -380,6 +380,7 @@ export const useChatStore = createPersistStore(
               prettyObject({
                 error: true,
                 message: error.message,
+                tip: "报错可以根据message处理，或者换模型，或者联系qqwj03",
               });
             botMessage.streaming = false;
             userMessage.isError = !isAborted;
