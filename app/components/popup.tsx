@@ -17,7 +17,7 @@ export function PopupComponent(props: { onClose: () => void }) {
   };
   const handleDateId = () => {
     const year = strDateId.substring(0, 4);
-    const month = parseInt(strDateId.substring(4, 6)) - 1;
+    const month = strDateId.substring(4, 6);
     const day = strDateId.substring(6, 8);
     const hour = strDateId.substring(8, 10);
     const minute = strDateId.substring(10, 12);
