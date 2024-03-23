@@ -46,7 +46,7 @@ export const DEFAULT_CONFIG = {
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "claude-3-haiku-20240307" as ModelType,
+    model: "gemini-pro" as ModelType,
     temperature: 0.5,
     top_p: 1,
     max_tokens: 4000,

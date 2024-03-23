@@ -289,15 +289,15 @@ export const DEFAULT_MODELS = [
       providerType: "google",
     },
   },
-  {
-    name: "claude-3-haiku-20240307",
-    available: true,
-    provider: {
-      id: "anthropic",
-      providerName: "Anthropic",
-      providerType: "anthropic",
-    },
-  },
+  // {
+  //   name: "claude-3-haiku-20240307",
+  //   available: true,
+  //   provider: {
+  //     id: "anthropic",
+  //     providerName: "Anthropic",
+  //     providerType: "anthropic",
+  //   },
+  // },
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;

@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 202403220023;
+export const dateId = 202403231840;
 const strDateId = dateId.toString();
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
@@ -52,7 +52,7 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>模型多多，趣味多多🎉</p>
+          <p className={styles["title"]}>模型消失术</p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
@@ -64,20 +64,19 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>gpt-3.5-turbo-1106</span> */}
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-pro-vision</span>
-            <span className={styles["tag"]}>claude-3-haiku-20240307</span>
+            {/* <span className={styles["tag"]}>claude-3-haiku-20240307</span> */}
           </p>
           <p className={styles["des"]}>3.5-turbo模型暂时下线，不支持使用</p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 发神经的语句 */}
-              不推荐福宝，推荐Claude 3 Haiku耶 超快聊天的同时可以发送图片哦
+              {/* 不推荐福宝，推荐Claude 3 Haiku耶 超快聊天的同时可以发送图片哦 */}
             </p>
           </div>
           <img
             className={styles["img"]}
             src="https://tse4-mm.cn.bing.net/th/id/OIP-C.X1Pwro4-I0v9cDhscrV5MwHaEK?rs=1&pid=ImgDetMain"
-            alt=""
           />
         </div>
       </Modal>
