@@ -130,17 +130,16 @@ function Screen() {
   if (!localStorage.getItem("popupSetting")) {
     localStorage.setItem(
       "popupSetting",
-      JSON.stringify({ id: dateId, showPopup: true }),
+      JSON.stringify({ id: dateId, hasNotice: true }),
     );
   }
   const popupSetting = JSON.parse(localStorage.getItem("popupSetting") || "{}");
-  const [showPopup, setShowPopup] = useState(popupSetting.showPopup);
+  const [showPopup, setShowPopup] = useState(false);
   if (popupSetting.id !== dateId) {
     localStorage.setItem(
       "popupSetting",
-      JSON.stringify({ id: dateId, showPopup: true }),
+      JSON.stringify({ id: dateId, hasNotice: true }),
     );
-    setShowPopup(true);
   }
 
   const config = useAppConfig();

@@ -311,6 +311,20 @@
     }
   }
 }
+.sidebar-action-dot {
+  position: relative;
+  &::after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FF6666;
+    position: absolute;
+    top: -2px;
+    right: -3px;
+  }
+}
 
 .sidebar-tail {
   display: flex;

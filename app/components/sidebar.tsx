@@ -140,6 +140,8 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
     () => isIOS() && isMobileScreen,
     [isMobileScreen],
   );
+  const popupSetting = JSON.parse(localStorage.getItem("popupSetting") || "{}");
+  const hasNotice = popupSetting.hasNotice;
 
   useHotKey();
 
@@ -214,7 +216,11 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
               <IconButton icon={<SettingsIcon />} shadow />
             </Link>
           </div>
-          <div className={styles["sidebar-action"]}>
+          <div
+            className={`${styles["sidebar-action"]} ${
+              hasNotice ? styles["sidebar-action-dot"] : ""
+            }`}
+          >
             <IconButton
               icon={<NoticeIcon />}
               shadow

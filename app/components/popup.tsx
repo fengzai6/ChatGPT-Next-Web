@@ -5,13 +5,13 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 202403241540;
+export const dateId = 202403241607;
 const strDateId = dateId.toString();
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
     localStorage.setItem(
       "popupSetting",
-      JSON.stringify({ id: dateId, showPopup: false }),
+      JSON.stringify({ id: dateId, hasNotice: false }),
     );
     props.onClose();
   };
@@ -73,7 +73,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 发神经的语句 */}
-              {/* 不推荐福宝，推荐Claude 3 Haiku耶 超快聊天的同时可以发送图片哦 */}
+              通知不在自动弹出，有的时候左下角会有红点，点击不在提示去除
             </p>
           </div>
           <img
