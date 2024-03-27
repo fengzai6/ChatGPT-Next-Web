@@ -142,7 +142,11 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
   );
   const popupSetting = JSON.parse(localStorage.getItem("popupSetting") || "{}");
   const hasNotice = popupSetting.hasNotice;
-
+  // 当前时间减去2023年4月30日的天数
+  const runTime = Math.floor(
+    (new Date().getTime() - new Date("2023-04-30").getTime()) /
+      (1000 * 60 * 60 * 24),
+  );
   useHotKey();
 
   return (
@@ -157,9 +161,11 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
     >
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
         <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          ChatGPT
+          Chat With U
         </div>
-        <div className={styles["sidebar-sub-title"]}>强强免費提供.</div>
+        <div className={styles["sidebar-sub-title"]}>
+          强强免費提供<br></br>已经运行{runTime}天~
+        </div>
         <div className={styles["sidebar-logo"] + " no-dark"}>
           <ChatGptIcon />
         </div>

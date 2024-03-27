@@ -652,7 +652,29 @@ export function Settings() {
 
   const clientConfig = useMemo(() => getClientConfig(), []);
   const showAccessCode = enabledAccessControl && !clientConfig?.isApp;
-
+  const [apiCount, setApiCount] = useState(Object);
+  const getApiCount = async () => {
+    const res = await fetch(
+      "https://uu.ci/public/dashboard/billing/subscription",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer sk-OiNMwzGJhDOb27Tf84D3Bb78241142Fe80Cb0cAcF9308470`,
+        },
+      },
+    ).then((res) => res.json());
+    const total = (res.used_quota + res.remain_quota) / 500000;
+    const used = res.used_quota / 500000;
+    const remain = res.remain_quota / 500000;
+    const data = {
+      // 保留两位小数
+      total: total.toFixed(2),
+      used: used.toFixed(2),
+      remain: remain.toFixed(2),
+    };
+    setApiCount(data);
+  };
   return (
     <ErrorBoundary>
       <div className="window-header" data-tauri-drag-region>
@@ -826,6 +848,23 @@ export function Settings() {
                 )
               }
             ></input>
+          </ListItem>
+          <ListItem
+            title={"额度信息"}
+            subTitle={
+              "总额：$" +
+              apiCount.total +
+              "，余额：$" +
+              apiCount.remain +
+              "，已用：$" +
+              apiCount.used
+            }
+          >
+            <IconButton
+              icon={<ResetIcon />}
+              text={"查询余额"}
+              onClick={getApiCount}
+            />
           </ListItem>
         </List>
 

@@ -73,7 +73,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 发神经的语句 */}
-              通知不在自动弹出，有的时候左下角会有红点，点击不在提示去除；
+              通知不在自动弹出，左下角会有红点提示，点击不在提示去除；
             </p>
           </div>
           <img
