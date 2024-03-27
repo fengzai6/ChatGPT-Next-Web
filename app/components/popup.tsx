@@ -53,7 +53,7 @@ export function PopupComponent(props: { onClose: () => void }) {
       >
         <div className={styles["notify"]} style={{}}>
           <p className={styles["title"]}>偶尔的小抽风见谅</p>
-          <p className={styles["tags-title"]}>现支持模型不一定如下：</p>
+          <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-1106-preview</span>
@@ -74,12 +74,11 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-content"]}>
               {/* 发神经的语句 */}
               通知不在自动弹出，有的时候左下角会有红点，点击不在提示去除；
-              gpt模型预计要晚点恢复，先用gemini-pro
             </p>
           </div>
           <img
             className={styles["img"]}
-            src="https://i0.hdslb.com/bfs/article/679dcbdba4e6e0c246e07002281a71993493131519527445.jpg@.webp"
+            src="https://pic.ziyuan.wang/user/guest/2024/03/1711520807619_9b58d02c3b154.png"
           />
         </div>
       </Modal>
