@@ -53,7 +53,7 @@ export function PopupComponent(props: { onClose: () => void }) {
       >
         <div className={styles["notify"]} style={{}}>
           <p className={styles["title"]}>偶尔的小抽风见谅</p>
-          <p className={styles["tags-title"]}>现支持模型如下：</p>
+          <p className={styles["tags-title"]}>现支持模型不一定如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-1106-preview</span>
