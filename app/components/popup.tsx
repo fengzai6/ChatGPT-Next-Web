@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 202404020005;
+export const dateId = 202404082034;
 const strDateId = dateId.toString();
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
@@ -59,15 +59,15 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>gpt-4-1106-preview</span>
             <span className={styles["tag"]}>gpt-4-0125-preview</span>
             <span className={styles["tag"]}>gpt-4-turbo-preview</span>
-            {/* <span className={styles["tag"]}>gpt-3.5-turbo</span> */}
-            {/* <span className={styles["tag"]}>gpt-3.5-turbo-16k</span> */}
+            <span className={styles["tag"]}>gpt-3.5-turbo</span>
+            <span className={styles["tag"]}>gpt-3.5-turbo-16k</span>
             {/* <span className={styles["tag"]}>gpt-3.5-turbo-1106</span> */}
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-pro-vision</span>
             {/* <span className={styles["tag"]}>claude-3-haiku-20240307</span> */}
           </p>
           <p className={styles["des"]}>
-            3.5不可用，那就用gpt4吧，保底可用模型Gemini-pro
+            下午抽风挂了，现在3.5回归了，嫌4慢可以用3.5，保底可用模型gemini-pro
           </p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
