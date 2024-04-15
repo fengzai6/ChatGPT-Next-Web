@@ -82,7 +82,7 @@ export function PopupComponent(props: { onClose: () => void }) {
           </div>
           <img
             className={styles["img"]}
-            src="https://s4.aconvert.com/convert/p3r68-cdx67/a591n-3bbv4.gif"
+            src="https://pic.ziyuan.wang/user/guest/2024/04/arbgc-m4k32_b2a3072280319.gif"
           />
         </div>
       </Modal>
