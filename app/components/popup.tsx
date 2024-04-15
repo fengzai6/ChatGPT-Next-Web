@@ -67,7 +67,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             {/* <span className={styles["tag"]}>claude-3-haiku-20240307</span> */}
           </p>
           <p className={styles["des"]}>
-            下午抽风挂了，现在3.5回归了，嫌4慢可以用3.5，保底可用模型gemini-pro
+            4 大于 gemini 大于 3，保底可用模型gemini-pro
           </p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
