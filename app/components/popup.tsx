@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 202404151234;
+export const dateId = 202404162109;
 const strDateId = dateId.toString();
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
@@ -77,7 +77,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               {/* 发神经的语句 */}
-              通知不在自动弹出，左下角会有红点提示，点击不在提示去除；
+              预计5月会因为某些不可抗力停止支持gpt系列模型，gemini系列模型继续支持
             </p>
           </div>
           <img
