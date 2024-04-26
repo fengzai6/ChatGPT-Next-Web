@@ -168,7 +168,7 @@ const anthropicModels = [
   // "claude-2.1",
   // "claude-3-sonnet-20240229",
   // "claude-3-opus-20240229",
-  // "claude-3-haiku-20240307",
+  "claude-3-haiku-20240307",
 ];
 
 export const DEFAULT_MODELS = [
@@ -190,15 +190,15 @@ export const DEFAULT_MODELS = [
       providerType: "google",
     },
   })),
-  // ...anthropicModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   provider: {
-  //     id: "anthropic",
-  //     providerName: "Anthropic",
-  //     providerType: "anthropic",
-  //   },
-  // })),
+  ...anthropicModels.map((name) => ({
+    name,
+    available: true,
+    provider: {
+      id: "anthropic",
+      providerName: "Anthropic",
+      providerType: "anthropic",
+    },
+  })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;
