@@ -148,7 +148,7 @@ const openaiModels = [
   "gpt-4-1106-preview",
   "gpt-4-0125-preview",
   "gpt-4o",
-  "gpt-4o-2024-05-13",
+  // "gpt-4o-2024-05-13",
   // "gpt-4-32k",
   // "gpt-4-32k-0314",
   // "gpt-4-32k-0613",
@@ -163,7 +163,7 @@ const googleModels = [
   "gemini-1.0-pro",
   "gemini-1.5-pro-latest",
   "gemini-1.5-flash-latest",
-  "gemini-pro-vision",
+  // "gemini-pro-vision",
 ];
 
 const anthropicModels = [

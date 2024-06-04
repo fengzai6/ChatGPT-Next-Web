@@ -52,7 +52,7 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>4月好运连连</p>
+          <p className={styles["title"]}>6月好运连连</p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
@@ -69,9 +69,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>谷歌gemini-pro-vision</span>
             <span className={styles["tag"]}>claude-3-haiku-20240307</span>
           </p>
-          <p className={styles["des"]}>
-            保底可用模型gemini-pro系列
-          </p>
+          <p className={styles["des"]}>保底可用模型gemini-pro系列</p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>{/* 发神经的语句 */}</p>
