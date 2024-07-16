@@ -205,7 +205,7 @@ const openaiModels = [
   // "gpt-4-turbo-preview",
   // "gpt-4-vision-preview",
   // "gpt-4-turbo-2024-04-09",
-  // "claude-3-haiku-20240307",
+  "claude-3.5-sonnet",
 ];
 
 const googleModels = [
@@ -264,15 +264,15 @@ export const DEFAULT_MODELS = [
       providerType: "openai",
     },
   })),
-  ...openaiModels.map((name) => ({
-    name,
-    available: true,
-    provider: {
-      id: "azure",
-      providerName: "Azure",
-      providerType: "azure",
-    },
-  })),
+  // ...openaiModels.map((name) => ({
+  //   name,
+  //   available: true,
+  //   provider: {
+  //     id: "azure",
+  //     providerName: "Azure",
+  //     providerType: "azure",
+  //   },
+  // })),
   ...googleModels.map((name) => ({
     name,
     available: true,
@@ -282,42 +282,42 @@ export const DEFAULT_MODELS = [
       providerType: "google",
     },
   })),
-  ...anthropicModels.map((name) => ({
-    name,
-    available: true,
-    provider: {
-      id: "anthropic",
-      providerName: "Anthropic",
-      providerType: "anthropic",
-    },
-  })),
-  ...baiduModels.map((name) => ({
-    name,
-    available: true,
-    provider: {
-      id: "baidu",
-      providerName: "Baidu",
-      providerType: "baidu",
-    },
-  })),
-  ...bytedanceModels.map((name) => ({
-    name,
-    available: true,
-    provider: {
-      id: "bytedance",
-      providerName: "ByteDance",
-      providerType: "bytedance",
-    },
-  })),
-  ...alibabaModes.map((name) => ({
-    name,
-    available: true,
-    provider: {
-      id: "alibaba",
-      providerName: "Alibaba",
-      providerType: "alibaba",
-    },
-  })),
+  // ...anthropicModels.map((name) => ({
+  //   name,
+  //   available: true,
+  //   provider: {
+  //     id: "anthropic",
+  //     providerName: "Anthropic",
+  //     providerType: "anthropic",
+  //   },
+  // })),
+  // ...baiduModels.map((name) => ({
+  //   name,
+  //   available: true,
+  //   provider: {
+  //     id: "baidu",
+  //     providerName: "Baidu",
+  //     providerType: "baidu",
+  //   },
+  // })),
+  // ...bytedanceModels.map((name) => ({
+  //   name,
+  //   available: true,
+  //   provider: {
+  //     id: "bytedance",
+  //     providerName: "ByteDance",
+  //     providerType: "bytedance",
+  //   },
+  // })),
+  // ...alibabaModes.map((name) => ({
+  //   name,
+  //   available: true,
+  //   provider: {
+  //     id: "alibaba",
+  //     providerName: "Alibaba",
+  //     providerType: "alibaba",
+  //   },
+  // })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;

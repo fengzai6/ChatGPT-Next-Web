@@ -5,7 +5,7 @@ import { IconButton } from "./button";
 import ClearIcon from "../icons/clear.svg";
 import CancelIcon from "../icons/cancel.svg";
 
-export const dateId = 202406191303;
+export const dateId = 202407161903;
 const strDateId = dateId.toString();
 export function PopupComponent(props: { onClose: () => void }) {
   const handleSaveSetting = () => {
@@ -52,7 +52,7 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>6月好运连连</p>
+          <p className={styles["title"]}>暑假好运连连</p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
@@ -68,10 +68,6 @@ export function PopupComponent(props: { onClose: () => void }) {
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>{/* 发神经的语句 */}</p>
           </div>
-          <img
-            className={styles["img"]}
-            src="https://pic.ziyuan.wang/user/guest/2024/04/arbgc-m4k32_b2a3072280319.gif"
-          />
         </div>
       </Modal>
     </div>
