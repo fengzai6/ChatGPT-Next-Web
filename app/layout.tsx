@@ -28,23 +28,6 @@ export const viewport: Viewport = {
   ],
 };
 
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   return (
-//     <html lang="en">
-//       <head>
-//         <meta name="config" content={JSON.stringify(getClientConfig())} />
-//         <link rel="manifest" href="/site.webmanifest"></link>
-//         <script src="/serviceWorkerRegister.js" defer></script>
-//         <script src="/matomo.js" defer></script>
-//       </head>
-//       <body>{children}</body>
-//     </html>
-//   );
-// }
 export default function RootLayout({
   children,
 }: {

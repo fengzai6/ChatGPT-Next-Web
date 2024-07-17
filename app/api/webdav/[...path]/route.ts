@@ -1,6 +1,6 @@
+import { getServerSideConfig } from "@/app/config/server";
 import { NextRequest, NextResponse } from "next/server";
 import { STORAGE_KEY, internalAllowedWebDavEndpoints } from "../../../constant";
-import { getServerSideConfig } from "@/app/config/server";
 
 const config = getServerSideConfig();
 
