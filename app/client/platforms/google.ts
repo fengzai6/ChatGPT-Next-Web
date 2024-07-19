@@ -1,5 +1,10 @@
 import { getClientConfig } from "@/app/config/client";
-import { ApiPath, Google, REQUEST_TIMEOUT_MS } from "@/app/constant";
+import {
+  ApiPath,
+  DEFAULT_API_HOST,
+  Google,
+  REQUEST_TIMEOUT_MS,
+} from "@/app/constant";
 import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
 import {
   getMessageImages,
