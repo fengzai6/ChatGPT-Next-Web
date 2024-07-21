@@ -72,7 +72,20 @@ export function PopupComponent(props: { onClose: () => void }) {
       >
         <div className={styles["notify"]} style={{}}>
           <p className={styles["title"]}>
-            qqwj.live域名即将在9月10号停止使用 <br /> 请将收藏改为qqwj.top
+            qqwj.live域名即将在9月10号停止使用
+            <br />
+            请将收藏改为qqwj.top &nbsp;&nbsp;
+            <a
+              href="https://chat.qqwj.top"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "#1890ff",
+                textDecoration: "underline",
+              }}
+            >
+              🌟点我跳转
+            </a>
           </p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
@@ -92,7 +105,7 @@ export function PopupComponent(props: { onClose: () => void }) {
           </p>
           <p className={styles["des"]}>保底可用模型gemini-pro系列</p>
           <div className={styles["tip"]}>
-            {/* <p className={styles["tip-title"]}>PS:</p> */}
+            <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
               <IconButton
                 text={"点我快速复制新域名：https://chat.qqwj.top"}
