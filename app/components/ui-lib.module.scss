@@ -62,6 +62,19 @@
       font-weight: normal;
     }
   }
+
+  &.vertical{
+    flex-direction: column;
+    align-items: start;
+    .list-header{
+      .list-item-title{
+        margin-bottom: 5px;
+      }
+      .list-item-sub-title{
+        margin-bottom: 2px;
+      }
+    }
+  }
 }
 
 .list {
@@ -386,6 +399,10 @@
   align-items: center;
   justify-content: center;
   z-index: 999;
+
+  .selector-item-disabled{
+    opacity: 0.6;
+  }
 
   &-content {
     .list {
