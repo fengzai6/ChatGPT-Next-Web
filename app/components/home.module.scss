@@ -9,6 +9,8 @@
   min-height: 370px;
   max-width: 1200px;
 
+  transition: all ease 0.3s;
+
   display: flex;
   overflow: hidden;
   box-sizing: border-box;
@@ -319,7 +321,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #FF6666;
+    background-color: #ff6666;
     position: absolute;
     top: -2px;
     right: -3px;
