@@ -1,18 +1,17 @@
-import React, { useEffect, useRef, useMemo, useState, Fragment } from "react";
+import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
 
 import styles from "./home.module.scss";
 
-import { IconButton } from "./button";
-import SettingsIcon from "../icons/settings.svg";
-import NoticeIcon from "../icons/notice.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
-import CloseIcon from "../icons/close.svg";
+import ChatGptIcon from "../icons/chatgpt.svg";
 import DeleteIcon from "../icons/delete.svg";
-import MaskIcon from "../icons/mask.svg";
-import DragIcon from "../icons/drag.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
+import DragIcon from "../icons/drag.svg";
 import LightIcon from "../icons/light.svg";
+import MaskIcon from "../icons/mask.svg";
+import NoticeIcon from "../icons/notice.svg";
+import SettingsIcon from "../icons/settings.svg";
+import { IconButton } from "./button";
 
 import Locale from "../locales";
 
@@ -25,13 +24,12 @@ import {
   NARROW_SIDEBAR_WIDTH,
   Path,
   PLUGINS,
-  REPO_URL,
 } from "../constant";
 
+import dynamic from "next/dynamic";
 import { Link, useNavigate } from "react-router-dom";
 import { isIOS, useMobileScreen } from "../utils";
-import dynamic from "next/dynamic";
-import { showConfirm, ImagePopup, Selector, showToast } from "./ui-lib";
+import { Selector, showConfirm, showToast } from "./ui-lib";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -172,10 +170,12 @@ export function SideBarHeader(props: {
   return (
     <Fragment>
       <div className={styles["sidebar-header"]} data-tauri-drag-region>
-        <div className={styles["sidebar-title"]} data-tauri-drag-region>
-          {title}
+        <div className={styles["sidebar-title-container"]}>
+          <div className={styles["sidebar-title"]} data-tauri-drag-region>
+            {title}
+          </div>
+          <div className={styles["sidebar-sub-title"]}>{subTitle}</div>
         </div>
-        <div className={styles["sidebar-sub-title"]}>{subTitle}</div>
         <div className={styles["sidebar-logo"] + " no-dark"}>{logo}</div>
       </div>
       {children}
@@ -315,7 +315,11 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
             </div>
             <div className={styles["sidebar-action"]}>
               <Link to={Path.Settings}>
-                <IconButton icon={<SettingsIcon />} shadow />
+                <IconButton
+                  aria={Locale.Settings.Title}
+                  icon={<SettingsIcon />}
+                  shadow
+                />
               </Link>
             </div>
             <div

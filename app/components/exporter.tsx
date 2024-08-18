@@ -1,6 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import { ChatMessage, ModelType, useAppConfig, useChatStore } from "../store";
 import Locale from "../locales";
+import { ChatMessage, useAppConfig, useChatStore } from "../store";
+import {
+  copyToClipboard,
+  downloadAs,
+  getMessageImages,
+  useMobileScreen,
+} from "../utils";
+import { IconButton } from "./button";
 import styles from "./exporter.module.scss";
 import {
   List,
@@ -11,35 +18,27 @@ import {
   showModal,
   showToast,
 } from "./ui-lib";
-import { IconButton } from "./button";
-import {
-  copyToClipboard,
-  downloadAs,
-  getMessageImages,
-  useMobileScreen,
-} from "../utils";
 
+import BotIcon from "../icons/bot.png";
+import ChatGptIcon from "../icons/chatgpt.png";
 import CopyIcon from "../icons/copy.svg";
 import LoadingIcon from "../icons/three-dots.svg";
-import ChatGptIcon from "../icons/chatgpt.png";
-import ShareIcon from "../icons/share.svg";
-import BotIcon from "../icons/bot.png";
 
-import DownloadIcon from "../icons/download.svg";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { MessageSelector, useMessageSelector } from "./message-selector";
-import { Avatar } from "./emoji";
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
+import { useEffect, useMemo, useRef, useState } from "react";
+import DownloadIcon from "../icons/download.svg";
+import { Avatar } from "./emoji";
+import { MessageSelector, useMessageSelector } from "./message-selector";
 
 import { toBlob, toPng } from "html-to-image";
 import { DEFAULT_MASK_AVATAR } from "../store/mask";
 
-import { prettyObject } from "../utils/format";
-import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
-import { getClientConfig } from "../config/client";
 import { type ClientApi, getClientApi } from "../client/api";
+import { getClientConfig } from "../config/client";
+import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
 import { getMessageTextContent } from "../utils";
+import { prettyObject } from "../utils/format";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -581,6 +580,7 @@ export function ImagePreviewer(props: {
                 <Markdown
                   content={getMessageTextContent(m)}
                   fontSize={config.fontSize}
+                  fontFamily={config.fontFamily}
                   defaultShow
                 />
                 {getMessageImages(m).length == 1 && (

@@ -37,6 +37,9 @@ import AutoIcon from "../icons/auto.svg";
 import BottomIcon from "../icons/bottom.svg";
 import StopIcon from "../icons/pause.svg";
 import RobotIcon from "../icons/robot.svg";
+import SizeIcon from "../icons/size.svg";
+import QualityIcon from "../icons/hd.svg";
+import StyleIcon from "../icons/palette.svg";
 import PluginIcon from "../icons/plugin.svg";
 
 import {
@@ -54,12 +57,13 @@ import {
 
 import {
   copyToClipboard,
-  selectOrCopy,
+  isNotSelectRange,
   autoGrowTextArea,
   useMobileScreen,
   getMessageTextContent,
   getMessageImages,
   isVisionModel,
+  isDalle3,
 } from "../utils";
 
 import { uploadImage as uploadImageRemote } from "@/app/utils/chat";
@@ -67,6 +71,7 @@ import { uploadImage as uploadImageRemote } from "@/app/utils/chat";
 import dynamic from "next/dynamic";
 
 import { ChatControllerPool } from "../client/controller";
+import { DalleSize, DalleQuality, DalleStyle } from "../typing";
 import { Prompt, usePromptStore } from "../store/prompt";
 import Locale from "../locales";
 
@@ -90,6 +95,7 @@ import {
   REQUEST_TIMEOUT_MS,
   UNFINISHED_INPUT,
   ServiceProvider,
+  Plugin,
 } from "../constant";
 import { Avatar } from "./emoji";
 import { ContextPrompts, MaskAvatar, MaskConfig } from "./mask";
@@ -244,6 +250,97 @@ function useSubmitHandler() {
     submitKey,
     shouldSubmit,
   };
+}
+
+function ChatMessageActions(props: {
+  index: number;
+  message: ChatMessage;
+  position: { x: number; y: number };
+  hoveringMessage: { hover: boolean; index: number };
+  onUserStop: (messageId: string) => void;
+  onResend: (message: ChatMessage) => void;
+  onDelete: (messageId: string) => void;
+  onPinMessage: (message: ChatMessage) => void;
+}) {
+  const {
+    index,
+    message,
+    position,
+    hoveringMessage,
+    onUserStop,
+    onResend,
+    onDelete,
+    onPinMessage,
+  } = props;
+
+  const actionsRef = useRef<HTMLDivElement>(null);
+
+  const isUserMessage = message.role === "user";
+
+  const [translate, setTranslate] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const rect = actionsRef.current?.getBoundingClientRect();
+
+    if (
+      rect &&
+      position.x &&
+      position.y &&
+      hoveringMessage.hover &&
+      hoveringMessage.index === index
+    ) {
+      const x = position.x - rect.x - (isUserMessage ? rect.width : 0);
+      const y = position.y - rect.y - rect.height;
+
+      setTranslate({ x, y });
+    } else {
+      setTranslate({ x: 0, y: 0 });
+    }
+  }, [position, hoveringMessage.index]);
+
+  return (
+    <div ref={actionsRef} className={styles["chat-message-actions"]}>
+      <div
+        className={`${styles["chat-input-actions"]}`}
+        style={{
+          transform: `translate3d(${translate.x}px, ${translate.y}px, 0)`,
+        }}
+      >
+        {message.streaming ? (
+          <ChatAction
+            text={Locale.Chat.Actions.Stop}
+            icon={<StopIcon />}
+            onClick={() => onUserStop(message.id ?? index)}
+          />
+        ) : (
+          <>
+            <ChatAction
+              text={Locale.Chat.Actions.Retry}
+              icon={<ResetIcon />}
+              onClick={() => onResend(message)}
+            />
+
+            <ChatAction
+              text={Locale.Chat.Actions.Delete}
+              icon={<DeleteIcon />}
+              onClick={() => onDelete(message.id ?? index)}
+            />
+
+            <ChatAction
+              text={Locale.Chat.Actions.Pin}
+              icon={<PinIcon />}
+              onClick={() => onPinMessage(message)}
+            />
+            <ChatAction
+              text={Locale.Chat.Actions.Copy}
+              icon={<CopyIcon />}
+              onClick={() => copyToClipboard(getMessageTextContent(message))}
+            />
+          </>
+        )}
+      </div>
+    </div>
+  );
 }
 
 export type RenderPrompt = Pick<Prompt, "title" | "content">;
@@ -477,7 +574,21 @@ export function ChatActions(props: {
     return model?.displayName ?? "";
   }, [models, currentModel, currentProviderName]);
   const [showModelSelector, setShowModelSelector] = useState(false);
+  const [showPluginSelector, setShowPluginSelector] = useState(false);
   const [showUploadImage, setShowUploadImage] = useState(false);
+
+  const [showSizeSelector, setShowSizeSelector] = useState(false);
+  const [showQualitySelector, setShowQualitySelector] = useState(false);
+  const [showStyleSelector, setShowStyleSelector] = useState(false);
+  const dalle3Sizes: DalleSize[] = ["1024x1024", "1792x1024", "1024x1792"];
+  const dalle3Qualitys: DalleQuality[] = ["standard", "hd"];
+  const dalle3Styles: DalleStyle[] = ["vivid", "natural"];
+  const currentSize =
+    chatStore.currentSession().mask.modelConfig?.size ?? "1024x1024";
+  const currentQuality =
+    chatStore.currentSession().mask.modelConfig?.quality ?? "standard";
+  const currentStyle =
+    chatStore.currentSession().mask.modelConfig?.style ?? "vivid";
 
   useEffect(() => {
     const show = isVisionModel(currentModel);
@@ -592,12 +703,6 @@ export function ChatActions(props: {
         icon={<RobotIcon />}
       />
 
-      <ChatAction
-        onClick={() => showToast(Locale.WIP)}
-        text={Locale.Plugin.Name}
-        icon={<PluginIcon />}
-      />
-
       {showModelSelector && (
         <Selector
           defaultSelectedValue={`${currentModel}@${currentProviderName}`}
@@ -627,6 +732,115 @@ export function ChatActions(props: {
               showToast(selectedModel?.displayName ?? "");
             } else {
               showToast(model);
+            }
+          }}
+        />
+      )}
+
+      {isDalle3(currentModel) && (
+        <ChatAction
+          onClick={() => setShowSizeSelector(true)}
+          text={currentSize}
+          icon={<SizeIcon />}
+        />
+      )}
+
+      {showSizeSelector && (
+        <Selector
+          defaultSelectedValue={currentSize}
+          items={dalle3Sizes.map((m) => ({
+            title: m,
+            value: m,
+          }))}
+          onClose={() => setShowSizeSelector(false)}
+          onSelection={(s) => {
+            if (s.length === 0) return;
+            const size = s[0];
+            chatStore.updateCurrentSession((session) => {
+              session.mask.modelConfig.size = size;
+            });
+            showToast(size);
+          }}
+        />
+      )}
+
+      {isDalle3(currentModel) && (
+        <ChatAction
+          onClick={() => setShowQualitySelector(true)}
+          text={currentQuality}
+          icon={<QualityIcon />}
+        />
+      )}
+
+      {showQualitySelector && (
+        <Selector
+          defaultSelectedValue={currentQuality}
+          items={dalle3Qualitys.map((m) => ({
+            title: m,
+            value: m,
+          }))}
+          onClose={() => setShowQualitySelector(false)}
+          onSelection={(q) => {
+            if (q.length === 0) return;
+            const quality = q[0];
+            chatStore.updateCurrentSession((session) => {
+              session.mask.modelConfig.quality = quality;
+            });
+            showToast(quality);
+          }}
+        />
+      )}
+
+      {isDalle3(currentModel) && (
+        <ChatAction
+          onClick={() => setShowStyleSelector(true)}
+          text={currentStyle}
+          icon={<StyleIcon />}
+        />
+      )}
+
+      {showStyleSelector && (
+        <Selector
+          defaultSelectedValue={currentStyle}
+          items={dalle3Styles.map((m) => ({
+            title: m,
+            value: m,
+          }))}
+          onClose={() => setShowStyleSelector(false)}
+          onSelection={(s) => {
+            if (s.length === 0) return;
+            const style = s[0];
+            chatStore.updateCurrentSession((session) => {
+              session.mask.modelConfig.style = style;
+            });
+            showToast(style);
+          }}
+        />
+      )}
+
+      <ChatAction
+        onClick={() => setShowPluginSelector(true)}
+        text={Locale.Plugin.Name}
+        icon={<PluginIcon />}
+      />
+      {showPluginSelector && (
+        <Selector
+          multiple
+          defaultSelectedValue={chatStore.currentSession().mask?.plugin}
+          items={[
+            {
+              title: Locale.Plugin.Artifacts,
+              value: Plugin.Artifacts,
+            },
+          ]}
+          onClose={() => setShowPluginSelector(false)}
+          onSelection={(s) => {
+            const plugin = s[0];
+            chatStore.updateCurrentSession((session) => {
+              session.mask.plugin = s;
+            });
+            if (plugin) {
+              showToast(plugin);
             }
           }}
         />
@@ -712,6 +926,7 @@ function _Chat() {
   const session = chatStore.currentSession();
   const config = useAppConfig();
   const fontSize = config.fontSize;
+  const fontFamily = config.fontFamily;
 
   const [showExport, setShowExport] = useState(false);
 
@@ -735,6 +950,18 @@ function _Chat() {
   const navigate = useNavigate();
   const [attachImages, setAttachImages] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+
+  const [hoveringMessage, setHoveringMessage] = useState<{
+    hover: boolean;
+    index: number;
+  }>({
+    hover: false,
+    index: -1,
+  });
+  const [actionsPosition, setActionsPosition] = useState<{
+    x: number;
+    y: number;
+  }>({ x: 0, y: 0 });
 
   // prompt hints
   const promptStore = usePromptStore();
@@ -791,7 +1018,7 @@ function _Chat() {
     // clear search results
     if (n === 0) {
       setPromptHints([]);
-    } else if (text.startsWith(ChatCommandPrefix)) {
+    } else if (text.match(ChatCommandPrefix)) {
       setPromptHints(chatCommands.search(text));
     } else if (!config.disablePromptHint && n < SEARCH_TEXT_LIMIT) {
       // check if need to trigger auto completion
@@ -891,16 +1118,22 @@ function _Chat() {
       e.preventDefault();
     }
   };
-  const onRightClick = (e: any, message: ChatMessage) => {
-    // copy to clipboard
-    if (selectOrCopy(e.currentTarget, getMessageTextContent(message))) {
-      if (userInput.length === 0) {
-        setUserInput(getMessageTextContent(message));
-      }
 
+  const onRightClick = (e: any) => {
+    // move actions to the right click position
+    if (isNotSelectRange()) {
       e.preventDefault();
+
+      setActionsPosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
     }
   };
+  // handle change msg hover to reset actions position
+  useEffect(() => {
+    setActionsPosition({ x: 0, y: 0 });
+  }, [hoveringMessage.index]);
 
   const deleteMessage = (msgId?: string) => {
     chatStore.updateCurrentSession(
@@ -1281,6 +1514,8 @@ function _Chat() {
               <IconButton
                 icon={<RenameIcon />}
                 bordered
+                title={Locale.Chat.EditMessage.Title}
+                aria={Locale.Chat.EditMessage.Title}
                 onClick={() => setIsEditingMessage(true)}
               />
             </div>
@@ -1300,6 +1535,8 @@ function _Chat() {
               <IconButton
                 icon={config.tightBorder ? <MinIcon /> : <MaxIcon />}
                 bordered
+                title={Locale.Chat.Actions.FullScreen}
+                aria={Locale.Chat.Actions.FullScreen}
                 onClick={() => {
                   config.update(
                     (config) => (config.tightBorder = !config.tightBorder),
@@ -1345,12 +1582,24 @@ function _Chat() {
                   isUser ? styles["chat-message-user"] : styles["chat-message"]
                 }
               >
-                <div className={styles["chat-message-container"]}>
+                <div
+                  className={styles["chat-message-container"]}
+                  onClick={() => {
+                    setActionsPosition({ x: 0, y: 0 });
+                  }}
+                  onMouseEnter={() =>
+                    setHoveringMessage({ hover: true, index: i })
+                  }
+                  onMouseLeave={() =>
+                    setHoveringMessage({ hover: false, index: -1 })
+                  }
+                >
                   <div className={styles["chat-message-header"]}>
                     <div className={styles["chat-message-avatar"]}>
                       <div className={styles["chat-message-edit"]}>
                         <IconButton
                           icon={<EditIcon />}
+                          aria={Locale.Chat.Actions.Edit}
                           onClick={async () => {
                             const newMessage = await showPrompt(
                               Locale.Chat.Actions.Edit,
@@ -1399,48 +1648,23 @@ function _Chat() {
                         </>
                       )}
                     </div>
+                    {!isUser && (
+                      <div className={styles["chat-model-name"]}>
+                        {message.model}
+                      </div>
+                    )}
 
                     {showActions && (
-                      <div className={styles["chat-message-actions"]}>
-                        <div className={styles["chat-input-actions"]}>
-                          {message.streaming ? (
-                            <ChatAction
-                              text={Locale.Chat.Actions.Stop}
-                              icon={<StopIcon />}
-                              onClick={() => onUserStop(message.id ?? i)}
-                            />
-                          ) : (
-                            <>
-                              <ChatAction
-                                text={Locale.Chat.Actions.Retry}
-                                icon={<ResetIcon />}
-                                onClick={() => onResend(message)}
-                              />
-
-                              <ChatAction
-                                text={Locale.Chat.Actions.Delete}
-                                icon={<DeleteIcon />}
-                                onClick={() => onDelete(message.id ?? i)}
-                              />
-
-                              <ChatAction
-                                text={Locale.Chat.Actions.Pin}
-                                icon={<PinIcon />}
-                                onClick={() => onPinMessage(message)}
-                              />
-                              <ChatAction
-                                text={Locale.Chat.Actions.Copy}
-                                icon={<CopyIcon />}
-                                onClick={() =>
-                                  copyToClipboard(
-                                    getMessageTextContent(message),
-                                  )
-                                }
-                              />
-                            </>
-                          )}
-                        </div>
-                      </div>
+                      <ChatMessageActions
+                        index={i}
+                        message={message}
+                        position={actionsPosition}
+                        hoveringMessage={hoveringMessage}
+                        onUserStop={onUserStop}
+                        onResend={onResend}
+                        onDelete={onDelete}
+                        onPinMessage={onPinMessage}
+                      />
                     )}
                   </div>
                   {showTyping && (
@@ -1450,18 +1674,20 @@ function _Chat() {
                   )}
                   <div className={styles["chat-message-item"]}>
                     <Markdown
+                      key={message.streaming ? "loading" : "done"}
                       content={getMessageTextContent(message)}
                       loading={
                         (message.preview || message.streaming) &&
                         message.content.length === 0 &&
                         !isUser
                       }
-                      onContextMenu={(e) => onRightClick(e, message)}
+                      onContextMenu={(e) => onRightClick(e)}
                       onDoubleClickCapture={() => {
                         if (!isMobileScreen) return;
                         setUserInput(getMessageTextContent(message));
                       }}
                       fontSize={fontSize}
+                      fontFamily={fontFamily}
                       parentRef={scrollRef}
                       defaultShow={i >= messages.length - 6}
                     />
@@ -1556,6 +1782,7 @@ function _Chat() {
             autoFocus={autoFocus}
             style={{
               fontSize: config.fontSize,
+              fontFamily: config.fontFamily,
             }}
           />
           {attachImages.length != 0 && (
