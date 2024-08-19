@@ -263,7 +263,7 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
           />
           <IconButton
             icon={<LightIcon />}
-            text={shouldNarrow ? undefined : Locale.Plugin.Name}
+            text={shouldNarrow ? undefined : "打赏"}
             className={styles["sidebar-bar-button"]}
             onClick={() => showToast("谢谢啦，不用啦🌹")}
             shadow

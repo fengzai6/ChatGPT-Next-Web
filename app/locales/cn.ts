@@ -510,7 +510,7 @@ const cn = {
     Revert: "恢复上下文",
   },
   Plugin: {
-    Name: "打賞",
+    Name: "插件",
     Artifacts: "Artifacts",
   },
   Discovery: {
