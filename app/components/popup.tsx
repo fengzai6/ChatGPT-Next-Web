@@ -1,10 +1,9 @@
-import React from "react";
+import CancelIcon from "../icons/cancel.svg";
+import ClearIcon from "../icons/clear.svg";
+import Copy from "../icons/copy.svg";
+import { IconButton } from "./button";
 import styles from "./popup.module.scss";
 import { Modal, showToast } from "./ui-lib";
-import { IconButton } from "./button";
-import ClearIcon from "../icons/clear.svg";
-import CancelIcon from "../icons/cancel.svg";
-import Copy from "../icons/copy.svg";
 
 const year = "2024";
 const month = "07";
@@ -71,27 +70,12 @@ export function PopupComponent(props: { onClose: () => void }) {
         ]}
       >
         <div className={styles["notify"]} style={{}}>
-          <p className={styles["title"]}>
-            qqwj.live域名即将在9月10号停止使用
-            <br />
-            请将收藏改为qqwj.top &nbsp;&nbsp;
-            <a
-              href="https://chat.qqwj.top"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "#1890ff",
-                textDecoration: "underline",
-              }}
-            >
-              🌟点我跳转
-            </a>
-          </p>
+          <p className={styles["title"]}>欢迎使用 Chat With U！</p>
           <p className={styles["tags-title"]}>现支持模型如下：</p>
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-turbo</span>
-            <span className={styles["tag"]}>claude-3.5-sonnet</span>
+            {/* <span className={styles["tag"]}>claude-3.5-sonnet</span> */}
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-flash</span>
@@ -107,6 +91,7 @@ export function PopupComponent(props: { onClose: () => void }) {
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
+              密码联系qqwj03
               <IconButton
                 text={"点我快速复制新域名：https://chat.qqwj.top"}
                 icon={<Copy />}

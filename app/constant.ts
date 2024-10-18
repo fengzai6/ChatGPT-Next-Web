@@ -233,7 +233,7 @@ Latex inline: \\(x^2\\)
 Latex block: $$e=mc^2$$
 `;
 
-export const SUMMARIZE_MODEL = "claude-3.5-sonnet";
+export const SUMMARIZE_MODEL = "gpt-4-turbo";
 export const GEMINI_SUMMARIZE_MODEL = "gemini-pro";
 
 export const KnowledgeCutOffDate: Record<string, string> = {
@@ -289,19 +289,19 @@ const openaiModels = [
   // "gpt-4-32k-0314",
   // "gpt-4-32k-0613",
   "gpt-4-turbo",
-  "gpt-4-turbo-preview",
-  "gpt-4o",
-  "gpt-4o-2024-05-13",
-  "gpt-4o-2024-08-06",
-  "chatgpt-4o-latest",
-  "gpt-4o-mini",
-  "gpt-4o-mini-2024-07-18",
-  "gpt-4-vision-preview",
-  "gpt-4-turbo-2024-04-09",
-  "gpt-4-1106-preview",
-  "dall-e-3",
-  "o1-mini",
-  "o1-preview",
+  // "gpt-4-turbo-preview",
+  // "gpt-4o",
+  // "gpt-4o-2024-05-13",
+  // "gpt-4o-2024-08-06",
+  // "chatgpt-4o-latest",
+  // "gpt-4o-mini",
+  // "gpt-4o-mini-2024-07-18",
+  // "gpt-4-vision-preview",
+  // "gpt-4-turbo-2024-04-09",
+  // "gpt-4-1106-preview",
+  // "dall-e-3",
+  // "o1-mini",
+  // "o1-preview",
 ];
 
 const googleModels = [

@@ -7,7 +7,6 @@ import ChatGptIcon from "../icons/chatgpt.svg";
 import DeleteIcon from "../icons/delete.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
 import DragIcon from "../icons/drag.svg";
-import LightIcon from "../icons/light.svg";
 import MaskIcon from "../icons/mask.svg";
 import NoticeIcon from "../icons/notice.svg";
 import SettingsIcon from "../icons/settings.svg";
@@ -29,7 +28,7 @@ import {
 import dynamic from "next/dynamic";
 import { Link, useNavigate } from "react-router-dom";
 import { isIOS, useMobileScreen } from "../utils";
-import { Selector, showConfirm, showToast } from "./ui-lib";
+import { Selector, showConfirm } from "./ui-lib";
 
 const ChatList = dynamic(async () => (await import("./chat-list")).ChatList, {
   loading: () => null,
@@ -266,13 +265,6 @@ export function SideBar(props: { className?: string; setShowPopup: any }) {
             text={shouldNarrow ? undefined : Locale.Discovery.Name}
             className={styles["sidebar-bar-button"]}
             onClick={() => setShowPluginSelector(true)}
-            shadow
-          />
-          <IconButton
-            icon={<LightIcon />}
-            text={shouldNarrow ? undefined : "打赏"}
-            className={styles["sidebar-bar-button"]}
-            onClick={() => showToast("谢谢啦，不用啦🌹")}
             shadow
           />
         </div>
