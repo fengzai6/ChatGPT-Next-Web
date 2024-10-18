@@ -1,15 +1,21 @@
 import { SubmitKey } from "../store/config";
 import type { PartialLocaleType } from "./index";
 import { getClientConfig } from "../config/client";
-
+import { SAAS_CHAT_UTM_URL } from "@/app/constant";
 const isApp = !!getClientConfig()?.isApp;
 
 const vi: PartialLocaleType = {
   WIP: "Sắp ra mắt...",
   Error: {
     Unauthorized: isApp
-      ? "Phát hiện khóa API không hợp lệ, vui lòng truy cập trang [Cài đặt](/#/settings) để kiểm tra xem khóa API có được cấu hình chính xác không."
-      : "Mật khẩu truy cập không đúng hoặc để trống, vui lòng truy cập trang [Đăng nhập](/#/auth) để nhập mật khẩu truy cập chính xác, hoặc điền khóa API OpenAI của bạn vào trang [Cài đặt](/#/settings).",
+      ? `😆 Cuộc trò chuyện gặp một số vấn đề, đừng lo lắng:
+    \\ 1️⃣ Nếu bạn muốn bắt đầu mà không cần cấu hình, [nhấp vào đây để bắt đầu trò chuyện ngay lập tức 🚀](${SAAS_CHAT_UTM_URL})
+    \\ 2️⃣ Nếu bạn muốn sử dụng tài nguyên OpenAI của riêng mình, hãy nhấp [vào đây](/#/settings) để thay đổi cài đặt ⚙️`
+      : `😆 Cuộc trò chuyện gặp một số vấn đề, đừng lo lắng:
+    \ 1️⃣ Nếu bạn muốn bắt đầu mà không cần cấu hình, [nhấp vào đây để bắt đầu trò chuyện ngay lập tức 🚀](${SAAS_CHAT_UTM_URL})
+    \ 2️⃣ Nếu bạn đang sử dụng phiên bản triển khai riêng, hãy nhấp [vào đây](/#/auth) để nhập khóa truy cập 🔑
+    \ 3️⃣ Nếu bạn muốn sử dụng tài nguyên OpenAI của riêng mình, hãy nhấp [vào đây](/#/settings) để thay đổi cài đặt ⚙️
+ `,
   },
   Auth: {
     Title: "Cần mật khẩu",
@@ -18,6 +24,10 @@ const vi: PartialLocaleType = {
     Input: "Nhập mã truy cập tại đây",
     Confirm: "Xác nhận",
     Later: "Để sau",
+    Return: "Trở lại",
+    SaasTips: "Cấu hình quá phức tạp, tôi muốn sử dụng ngay lập tức",
+    TopTips:
+      "🥳 Ưu đãi ra mắt NextChat AI, mở khóa OpenAI o1, GPT-4o, Claude-3.5 và các mô hình lớn mới nhất ngay bây giờ",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} cuộc trò chuyện`,
@@ -43,6 +53,8 @@ const vi: PartialLocaleType = {
       PinToastAction: "Xem",
       Delete: "Xóa",
       Edit: "Chỉnh sửa",
+      RefreshTitle: "Làm mới tiêu đề",
+      RefreshToast: "Đã gửi yêu cầu làm mới tiêu đề",
     },
     Commands: {
       new: "Tạo cuộc trò chuyện mới",
@@ -281,6 +293,14 @@ const vi: PartialLocaleType = {
     },
 
     Access: {
+      SaasStart: {
+        Title: "Sử dụng NextChat AI",
+        Label: "(Giải pháp tiết kiệm chi phí nhất)",
+        SubTitle:
+          "Được NextChat chính thức duy trì, sẵn sàng sử dụng mà không cần cấu hình, hỗ trợ các mô hình lớn mới nhất như OpenAI o1, GPT-4o và Claude-3.5",
+        ChatNow: "Chat ngay",
+      },
+
       AccessCode: {
         Title: "Mật khẩu truy cập",
         SubTitle: "Quản trị viên đã bật truy cập mã hóa",
@@ -410,6 +430,10 @@ const vi: PartialLocaleType = {
     },
 
     Model: "Mô hình (model)",
+    CompressModel: {
+      Title: "Mô hình nén",
+      SubTitle: "Mô hình được sử dụng để nén lịch sử",
+    },
     Temperature: {
       Title: "Độ ngẫu nhiên (temperature)",
       SubTitle: "Giá trị càng lớn, câu trả lời càng ngẫu nhiên",
@@ -465,6 +489,21 @@ const vi: PartialLocaleType = {
   },
   FineTuned: {
     Sysmessage: "Bạn là một trợ lý",
+  },
+  SearchChat: {
+    Name: "Tìm kiếm",
+    Page: {
+      Title: "Tìm kiếm lịch sử trò chuyện",
+      Search: "Nhập từ khóa tìm kiếm",
+      NoResult: "Không tìm thấy kết quả",
+      NoData: "Không có dữ liệu",
+      Loading: "Đang tải",
+
+      SubTitle: (count: number) => `Tìm thấy ${count} kết quả`,
+    },
+    Item: {
+      View: "Xem",
+    },
   },
   Mask: {
     Name: "Mặt nạ",
