@@ -6,9 +6,9 @@ import styles from "./popup.module.scss";
 import { Modal, showToast } from "./ui-lib";
 
 const year = "2024";
-const month = "07";
-const day = "21";
-const time = "1538";
+const month = "11";
+const day = "01";
+const time = "1122";
 
 export const dateId: string = year + month + day + time;
 
@@ -75,7 +75,7 @@ export function PopupComponent(props: { onClose: () => void }) {
           <p className={styles["tags"]}>
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-turbo</span>
-            {/* <span className={styles["tag"]}>claude-3.5-sonnet</span> */}
+            <span className={styles["tag"]}>claude-3.5-sonnet</span>
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-flash</span>
