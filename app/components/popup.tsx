@@ -7,8 +7,8 @@ import { Modal, showToast } from "./ui-lib";
 
 const year = "2024";
 const month = "11";
-const day = "01";
-const time = "1122";
+const day = "05";
+const time = "0758";
 
 export const dateId: string = year + month + day + time;
 
@@ -79,6 +79,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>谷歌gemini-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-flash</span>
+            <span className={styles["tag"]}>grok-bate (XAI)</span>
           </p>
           {/* <p className={styles["tags-title"]}>未来可能支持模型：</p>
           <p className={styles["tags"]}>
@@ -87,7 +88,9 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>通义千问</span>
             <span className={styles["tag"]}>其他</span>
           </p> */}
-          <p className={styles["des"]}>保底可用模型gemini-pro系列</p>
+          <p className={styles["des"]}>
+            新增XAI-beta模型，保底可用模型gemini-pro系列
+          </p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>
