@@ -76,9 +76,11 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-turbo</span>
             <span className={styles["tag"]}>claude-3.5-sonnet</span>
-            <span className={styles["tag"]}>谷歌gemini-pro</span>
-            <span className={styles["tag"]}>谷歌gemini-1.5-pro</span>
             <span className={styles["tag"]}>谷歌gemini-1.5-flash</span>
+            <span className={styles["tag"]}>
+              谷歌gemini-1.5-flash-8b-latest
+            </span>
+            <span className={styles["tag"]}>谷歌gemini-1.5-pro</span>
             <span className={styles["tag"]}>grok-bate (XAI)</span>
           </p>
           {/* <p className={styles["tags-title"]}>未来可能支持模型：</p>
