@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
-import { ChatMessage, useAppConfig, useChatStore } from "../store";
 import Locale from "../locales";
+import { ChatMessage, useAppConfig, useChatStore } from "../store";
 import {
   copyToClipboard,
   downloadAs,
@@ -34,6 +34,7 @@ import { MessageSelector, useMessageSelector } from "./message-selector";
 import { toBlob, toPng } from "html-to-image";
 import { DEFAULT_MASK_AVATAR } from "../store/mask";
 
+import clsx from "clsx";
 import { type ClientApi, getClientApi } from "../client/api";
 import { getClientConfig } from "../config/client";
 import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
@@ -117,9 +118,10 @@ function Steps<
           return (
             <div
               key={i}
-              className={`${styles["step"]} ${
-                styles[i <= props.index ? "step-finished" : ""]
-              } ${i === props.index && styles["step-current"]} clickable`}
+              className={clsx("clickable", styles["step"], {
+                [styles["step-finished"]]: i <= props.index,
+                [styles["step-current"]]: i === props.index,
+              })}
               onClick={() => {
                 props.onStepChange?.(i);
               }}
@@ -524,11 +526,11 @@ export function ImagePreviewer(props: {
         messages={props.messages}
       />
       <div
-        className={`${styles["preview-body"]} ${styles["default-theme"]}`}
+        className={clsx(styles["preview-body"], styles["default-theme"])}
         ref={previewRef}
       >
         <div className={styles["chat-info"]}>
-          <div className={styles["logo"] + " no-dark"}>
+          <div className={clsx(styles["logo"], "no-dark")}>
             <NextImage
               src={ChatGptIcon.src}
               alt="logo"
@@ -567,7 +569,7 @@ export function ImagePreviewer(props: {
         {props.messages.map((m, i) => {
           return (
             <div
-              className={styles["message"] + " " + styles["message-" + m.role]}
+              className={clsx(styles["message"], styles["message-" + m.role])}
               key={i}
             >
               <div className={styles["avatar"]}>
