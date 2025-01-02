@@ -6,9 +6,9 @@ import styles from "./popup.module.scss";
 import { Modal, showToast } from "./ui-lib";
 
 const year = "2024";
-const month = "11";
-const day = "05";
-const time = "0758";
+const month = "12";
+const day = "13";
+const time = "0858";
 
 export const dateId: string = year + month + day + time;
 
@@ -76,12 +76,18 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-turbo</span>
             <span className={styles["tag"]}>claude-3.5-sonnet</span>
-            <span className={styles["tag"]}>谷歌gemini-1.5-flash</span>
             <span className={styles["tag"]}>
-              谷歌gemini-1.5-flash-8b-latest
+              谷歌gemini-1.5-flash （每分钟 15 条）
             </span>
-            <span className={styles["tag"]}>谷歌gemini-1.5-pro</span>
-            <span className={styles["tag"]}>grok-bate (XAI)</span>
+            <span className={styles["tag"]}>
+              谷歌gemini-1.5-flash-8b-latest （每分钟 15 条）
+            </span>
+            <span className={styles["tag"]}>
+              谷歌gemini-1.5-pro （每分钟 2 条）
+            </span>
+            <span className={styles["tag"]}>
+              谷歌gemini-2.0-flash-exp （每分钟 10 条）
+            </span>
           </p>
           {/* <p className={styles["tags-title"]}>未来可能支持模型：</p>
           <p className={styles["tags"]}>
@@ -90,9 +96,7 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>通义千问</span>
             <span className={styles["tag"]}>其他</span>
           </p> */}
-          <p className={styles["des"]}>
-            新增XAI-beta模型，保底可用模型gemini-pro系列
-          </p>
+          <p className={styles["des"]}>稳定可用模型gemini系列</p>
           <div className={styles["tip"]}>
             <p className={styles["tip-title"]}>PS:</p>
             <p className={styles["tip-content"]}>

@@ -531,17 +531,17 @@ export const DEFAULT_MODELS = [
   //     sorted: 10,
   //   },
   // })),
-  ...xAIModes.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "xai",
-      providerName: "XAI",
-      providerType: "xai",
-      sorted: 11,
-    },
-  })),
+  // ...xAIModes.map((name) => ({
+  //   name,
+  //   available: true,
+  //   sorted: seq++,
+  //   provider: {
+  //     id: "xai",
+  //     providerName: "XAI",
+  //     providerType: "xai",
+  //     sorted: 11,
+  //   },
+  // })),
   // ...chatglmModels.map((name) => ({
   //   name,
   //   available: true,
