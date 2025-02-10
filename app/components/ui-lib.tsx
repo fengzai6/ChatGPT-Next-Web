@@ -13,7 +13,6 @@ import styles from "./ui-lib.module.scss";
 
 import Locale from "../locales";
 
-import clsx from "clsx";
 import React, {
   CSSProperties,
   HTMLProps,
@@ -25,6 +24,8 @@ import React, {
 } from "react";
 import { createRoot } from "react-dom/client";
 import { IconButton } from "./button";
+import { Avatar } from "./emoji";
+import clsx from "clsx";
 
 export function Popover(props: {
   children: JSX.Element;
@@ -605,6 +606,7 @@ export function Selector<T>(props: {
                 key={i}
                 title={item.title}
                 subTitle={item.subTitle}
+                icon={<Avatar model={item.value as string} />}
                 onClick={(e) => {
                   if (item.disable) {
                     e.stopPropagation();
