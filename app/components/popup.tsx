@@ -76,18 +76,10 @@ export function PopupComponent(props: { onClose: () => void }) {
             <span className={styles["tag"]}>gpt-4</span>
             <span className={styles["tag"]}>gpt-4-turbo</span>
             <span className={styles["tag"]}>claude-3.5-sonnet</span>
-            <span className={styles["tag"]}>
-              谷歌gemini-1.5-flash （每分钟 15 条）
-            </span>
-            <span className={styles["tag"]}>
-              谷歌gemini-1.5-flash-8b-latest （每分钟 15 条）
-            </span>
-            <span className={styles["tag"]}>
-              谷歌gemini-1.5-pro （每分钟 2 条）
-            </span>
-            <span className={styles["tag"]}>
-              谷歌gemini-2.0-flash-exp （每分钟 10 条）
-            </span>
+            <span className={styles["tag"]}>谷歌gemini-1.5-flash</span>
+            <span className={styles["tag"]}>谷歌gemini-1.5-flash-8b</span>
+            <span className={styles["tag"]}>谷歌gemini-2.0-flash</span>
+            <span className={styles["tag"]}>谷歌gemini-2.0-flash-thinking</span>
           </p>
           {/* <p className={styles["tags-title"]}>未来可能支持模型：</p>
           <p className={styles["tags"]}>

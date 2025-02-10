@@ -501,14 +501,15 @@ const openaiModels = [
   // "dall-e-3",
   // "o1-mini",
   // "o1-preview",
+  "claude-3.5-sonnet",
 ];
 
 const googleModels = [
   // "gemini-1.0-pro", // Deprecated on 2/15/2025
   // "gemini-1.5-pro-latest",
   // "gemini-1.5-pro",
-  "gemini-1.5-pro-002",
-  "gemini-1.5-pro-exp-0827",
+  // "gemini-1.5-pro-002",
+  // "gemini-1.5-pro-exp-0827",
   // "gemini-1.5-flash-latest",
   // "gemini-1.5-flash-8b-latest",
   "gemini-1.5-flash",
@@ -518,15 +519,15 @@ const googleModels = [
   // "learnlm-1.5-pro-experimental",
   // "gemini-exp-1114",
   // "gemini-exp-1121",
-  "gemini-exp-1206",
+  // "gemini-exp-1206",
   "gemini-2.0-flash",
   "gemini-2.0-flash-exp",
-  "gemini-2.0-flash-lite-preview-02-05",
+  // "gemini-2.0-flash-lite-preview-02-05",
   "gemini-2.0-flash-thinking-exp",
-  "gemini-2.0-flash-thinking-exp-1219",
-  "gemini-2.0-flash-thinking-exp-01-21",
-  "gemini-2.0-pro-exp",
-  "gemini-2.0-pro-exp-02-05",
+  // "gemini-2.0-flash-thinking-exp-1219",
+  // "gemini-2.0-flash-thinking-exp-01-21",
+  // "gemini-2.0-pro-exp",
+  // "gemini-2.0-pro-exp-02-05",
 ];
 
 const anthropicModels = [
@@ -792,17 +793,17 @@ export const DEFAULT_MODELS = [
   //     sorted: 13,
   //   },
   // })),
-  ...siliconflowModels.map((name) => ({
-    name,
-    available: true,
-    sorted: seq++,
-    provider: {
-      id: "siliconflow",
-      providerName: "SiliconFlow",
-      providerType: "siliconflow",
-      sorted: 14,
-    },
-  })),
+  // ...siliconflowModels.map((name) => ({
+  //   name,
+  //   available: true,
+  //   sorted: seq++,
+  //   provider: {
+  //     id: "siliconflow",
+  //     providerName: "SiliconFlow",
+  //     providerType: "siliconflow",
+  //     sorted: 14,
+  //   },
+  // })),
 ] as const;
 
 export const CHAT_PAGE_SIZE = 15;

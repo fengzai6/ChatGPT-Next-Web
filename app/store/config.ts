@@ -172,13 +172,13 @@ export const useAppConfig = createPersistStore(
       if (!newModels || newModels.length === 0) {
         return;
       }
-      const oldModels = get().models;
+      // const oldModels = get().models;
       const modelMap: Record<string, LLMModel> = {};
 
-      for (const model of oldModels) {
-        model.available = false;
-        modelMap[`${model.name}@${model?.provider?.id}`] = model;
-      }
+      // for (const model of oldModels) {
+      //   model.available = false;
+      //   modelMap[`${model.name}@${model?.provider?.id}`] = model;
+      // }
 
       for (const model of newModels) {
         model.available = true;
