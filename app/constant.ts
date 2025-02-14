@@ -598,7 +598,12 @@ const iflytekModels = [
   "4.0Ultra",
 ];
 
-const deepseekModels = ["deepseek-chat", "deepseek-coder", "deepseek-reasoner"];
+const deepseekModels = [
+  // "deepseek-chat",
+  // "deepseek-coder",
+  // "deepseek-reasoner",
+  "DeepSeek-R1",
+];
 
 const xAIModes = [
   "grok-beta",
@@ -782,17 +787,17 @@ export const DEFAULT_MODELS = [
   //     sorted: 12,
   //   },
   // })),
-  // ...deepseekModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "deepseek",
-  //     providerName: "DeepSeek",
-  //     providerType: "deepseek",
-  //     sorted: 13,
-  //   },
-  // })),
+  ...deepseekModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "deepseek",
+      providerName: "DeepSeek",
+      providerType: "deepseek",
+      sorted: 13,
+    },
+  })),
   // ...siliconflowModels.map((name) => ({
   //   name,
   //   available: true,
