@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
-import { RequestMessage } from "./client/api";
 import { showToast } from "./components/ui-lib";
-import { ServiceProvider } from "./constant";
 import Locale from "./locales";
+import { RequestMessage } from "./client/api";
+import {
+  REQUEST_TIMEOUT_MS,
+  REQUEST_TIMEOUT_MS_FOR_THINKING,
+  ServiceProvider,
+} from "./constant";
 // import { fetch as tauriFetch, ResponseType } from "@tauri-apps/api/http";
 import { EXCLUDE_VISION_MODEL_REGEXES, VISION_MODEL_REGEXES } from "./constant";
 import { useAccessStore } from "./store";
@@ -290,6 +294,20 @@ export function isVisionModel(model: string) {
 
 export function isDalle3(model: string) {
   return "dall-e-3" === model;
+}
+
+export function getTimeoutMSByModel(model: string) {
+  model = model.toLowerCase();
+  if (
+    model.startsWith("dall-e") ||
+    model.startsWith("dalle") ||
+    model.startsWith("o1") ||
+    model.startsWith("o3") ||
+    model.includes("deepseek-r") ||
+    model.includes("-thinking")
+  )
+    return REQUEST_TIMEOUT_MS_FOR_THINKING;
+  return REQUEST_TIMEOUT_MS;
 }
 
 export function getModelSizes(model: string): ModelSize[] {

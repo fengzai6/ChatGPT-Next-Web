@@ -19,10 +19,9 @@ import {
   showToast,
 } from "./ui-lib";
 
-import BotIcon from "../icons/bot.png";
-import ChatGptIcon from "../icons/chatgpt.png";
 import CopyIcon from "../icons/copy.svg";
 import LoadingIcon from "../icons/three-dots.svg";
+import ChatGptIcon from "../icons/chatgpt.png";
 
 import dynamic from "next/dynamic";
 import NextImage from "next/image";
@@ -32,14 +31,14 @@ import { Avatar } from "./emoji";
 import { MessageSelector, useMessageSelector } from "./message-selector";
 
 import { toBlob, toPng } from "html-to-image";
-import { DEFAULT_MASK_AVATAR } from "../store/mask";
 
-import clsx from "clsx";
-import { type ClientApi, getClientApi } from "../client/api";
-import { getClientConfig } from "../config/client";
-import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
-import { getMessageTextContent } from "../utils";
 import { prettyObject } from "../utils/format";
+import { EXPORT_MESSAGE_CLASS_NAME } from "../constant";
+import { getClientConfig } from "../config/client";
+import { type ClientApi, getClientApi } from "../client/api";
+import { getMessageTextContent } from "../utils";
+import { MaskAvatar } from "./mask";
+import clsx from "clsx";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -406,22 +405,6 @@ export function PreviewActions(props: {
   );
 }
 
-function ExportAvatar(props: { avatar: string }) {
-  if (props.avatar === DEFAULT_MASK_AVATAR) {
-    return (
-      <img
-        src={BotIcon.src}
-        width={30}
-        height={30}
-        alt="bot"
-        className="user-avatar"
-      />
-    );
-  }
-
-  return <Avatar avatar={props.avatar} />;
-}
-
 export function ImagePreviewer(props: {
   messages: ChatMessage[];
   topic: string;
@@ -543,9 +526,12 @@ export function ImagePreviewer(props: {
             <div className={styles["main-title"]}>ChatGPT For U</div>
             <div className={styles["sub-title"]}>https://chat.qqwj.live</div>
             <div className={styles["icons"]}>
-              <ExportAvatar avatar={config.avatar} />
+              <MaskAvatar avatar={config.avatar} />
               <span className={styles["icon-space"]}>&</span>
-              <ExportAvatar avatar={mask.avatar} />
+              <MaskAvatar
+                avatar={mask.avatar}
+                model={session.mask.modelConfig.model}
+              />
             </div>
           </div>
           <div>
@@ -573,9 +559,14 @@ export function ImagePreviewer(props: {
               key={i}
             >
               <div className={styles["avatar"]}>
-                <ExportAvatar
-                  avatar={m.role === "user" ? config.avatar : mask.avatar}
-                />
+                {m.role === "user" ? (
+                  <Avatar avatar={config.avatar}></Avatar>
+                ) : (
+                  <MaskAvatar
+                    avatar={session.mask.avatar}
+                    model={m.model || session.mask.modelConfig.model}
+                  />
+                )}
               </div>
 
               <div className={styles["body"]}>
