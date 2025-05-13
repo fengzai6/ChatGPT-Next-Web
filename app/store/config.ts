@@ -1,5 +1,5 @@
+import type { Voice } from "rt-client";
 import { LLMModel } from "../client/api";
-import { DalleQuality, DalleStyle, ModelSize } from "../typing";
 import { getClientConfig } from "../config/client";
 import {
   DEFAULT_INPUT_TEMPLATE,
@@ -11,11 +11,11 @@ import {
   DEFAULT_TTS_MODELS,
   DEFAULT_TTS_VOICE,
   DEFAULT_TTS_VOICES,
-  StoreKey,
   ServiceProvider,
+  StoreKey,
 } from "../constant";
+import { DalleQuality, DalleStyle, ModelSize } from "../typing";
 import { createPersistStore } from "../utils/store";
-import type { Voice } from "rt-client";
 
 export type ModelType = (typeof DEFAULT_MODELS)[number]["name"];
 export type TTSModelType = (typeof DEFAULT_TTS_MODELS)[number];
@@ -200,14 +200,16 @@ export const useAppConfig = createPersistStore(
       const state = persistedState as ChatConfig | undefined;
       if (!state) return { ...currentState };
       const models = currentState.models.slice();
-      state.models.forEach((pModel) => {
-        const idx = models.findIndex(
-          (v) => v.name === pModel.name && v.provider === pModel.provider,
-        );
-        if (idx !== -1) models[idx] = pModel;
-        else models.push(pModel);
-      });
-      return { ...currentState, ...state, models: models };
+
+      // state.models.forEach((pModel) => {
+      //   const idx = models.findIndex(
+      //     (v) => v.name === pModel.name && v.provider === pModel.provider,
+      //   );
+      //   if (idx !== -1) models[idx] = pModel;
+      //   else models.push(pModel);
+      // });
+
+      return { ...currentState, ...state, models };
     },
 
     migrate(persistedState, version) {
