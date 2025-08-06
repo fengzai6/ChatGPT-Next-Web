@@ -470,7 +470,7 @@ export const VISION_MODEL_REGEXES = [
   /claude-3/,
   /gemini-1\.5/,
   /gemini-exp/,
-  /gemini-2\.0/,
+  /gemini-2\.[05]/,
   /learnlm/,
   /qwen-vl/,
   /qwen2-vl/,
@@ -480,7 +480,7 @@ export const VISION_MODEL_REGEXES = [
   /vl/i,
   /o3/,
   /o4-mini/,
-  /gemini-2\.5/,
+  /grok-4/i,
 ];
 
 export const EXCLUDE_VISION_MODEL_REGEXES = [/claude-3-5-haiku-20241022/];
@@ -538,7 +538,7 @@ const googleModels = [
   "gemini-2.0-flash-lite",
   // "gemini-2.0-flash-lite-preview-02-05",
   "gemini-2.5-flash",
-  "gemini-2.5-flash-lite-preview-06-17",
+  "gemini-2.5-flash-lite",
   // "gemini-2.0-flash-thinking-exp-1219",
   // "gemini-2.0-flash-thinking-exp-01-21",
   // "gemini-2.0-pro-exp",
@@ -637,23 +637,26 @@ const xAIModes = [
 ];
 
 const chatglmModels = [
-  "glm-4-plus",
-  "glm-4-0520",
-  "glm-4",
-  "glm-4-air",
-  "glm-4-airx",
-  "glm-4-long",
-  "glm-4-flashx",
-  "glm-4-flash",
-  "glm-4v-plus",
-  "glm-4v",
-  "glm-4v-flash", // free
-  "cogview-3-plus",
-  "cogview-3",
-  "cogview-3-flash", // free
+  // "glm-4-plus",
+  // "glm-4-0520",
+  // "glm-4",
+  // "glm-4-air",
+  // "glm-4-airx",
+  // "glm-4-long",
+  // "glm-4-flashx",
+  // "glm-4-flash",
+  // "glm-4v-plus",
+  // "glm-4v",
+  // "glm-4v-flash", // free
+  // "cogview-3-plus",
+  // "cogview-3",
+  // "cogview-3-flash", // free
   // 目前无法适配轮询任务
   //   "cogvideox",
   //   "cogvideox-flash", // free
+  "glm-4.5-air",
+  "glm-4.5",
+  "glm-4.1v-thinking-flashx",
 ];
 
 const siliconflowModels = [
@@ -796,17 +799,17 @@ export const DEFAULT_MODELS = [
   //     sorted: 11,
   //   },
   // })),
-  // ...chatglmModels.map((name) => ({
-  //   name,
-  //   available: true,
-  //   sorted: seq++,
-  //   provider: {
-  //     id: "chatglm",
-  //     providerName: "ChatGLM",
-  //     providerType: "chatglm",
-  //     sorted: 12,
-  //   },
-  // })),
+  ...chatglmModels.map((name) => ({
+    name,
+    available: true,
+    sorted: seq++,
+    provider: {
+      id: "chatglm",
+      providerName: "ChatGLM",
+      providerType: "chatglm",
+      sorted: 12,
+    },
+  })),
   ...deepseekModels.map((name) => ({
     name,
     available: true,
